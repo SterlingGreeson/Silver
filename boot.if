@@ -1,1 +1,17 @@
+#![no_std]
+#![no_main]
 
+#[entry]
+fn uefi_main(_handle: Handle, mut system_table: SystemTable<Boot>) -> Status {
+    system_table
+        .stdout()
+        .write_str("Hello world!")
+        .unwrap();
+
+    loop {}
+}
+
+#[panic_handler]
+fn panic(info: &PanicInfo) -> ! {
+    loop {}
+}
